@@ -1,0 +1,69 @@
+/*Create a FILE and Read the FILE*/
+/*CSE 2B*/
+/*Data Structure project*/
+/*Abhishek Das(98)
+Samrat Basak(97)*/
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*Main Body*/
+ int main()
+{
+	FILE *fp;
+	char filename[50];
+	char ch;
+	int op;
+	
+	/*Options*/
+	while(1)
+	{
+	printf("******Welcome to basic file handeling operations******");
+	printf("\n#To create a new FILE press 1\n#To Read Data from the FILE 2\n#Exit 3");
+	printf("\nEnter your choice: ");
+	scanf("%d",&op);
+	switch(op)
+	{
+		case 1: 
+		
+		/*Creating file and writing on it*/
+ 	 printf("\nEnter the file name.Enter file type:-> ");
+	 scanf("%s",&filename);
+ 	fp= fopen(filename,"w");
+ 	if(fp==NULL)
+ 	{
+ 		printf("\n Creating unsucessfull......!");
+ 		return;
+	 }
+	 printf("\nEnter your content.......:\n------------------------\n");
+	 while((ch=getchar())!=EOF)
+	 {
+	 	putc(ch,fp);
+	 }
+	 printf("\n'%s' File has saved sucessfully....",filename);
+	 fclose(fp);
+	break;
+		case 2:
+			
+			/*Open already created file and read from it*/
+	 printf("\nEnter the file name.Enter file type:-> ");
+	 scanf("%s",&filename);
+	 fp=fopen(filename, "r");
+	 if(fp==NULL)
+	 {
+	 	printf("\n	'%s' File not found......!",filename);
+	 	return;
+	 }
+	 printf("\n\n	'%s' Your contents are here.....:\n-----------------------------------\n",filename);
+    while((ch=getc(fp))!=EOF)
+    	{
+    		printf("%c",ch);
+		}
+    	fclose(fp);
+		break;			
+	case 3:
+		return 0;
+	}
+	}
+}
